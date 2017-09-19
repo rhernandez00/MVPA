@@ -29,3 +29,5 @@ Agregar al final del archivo:
 `PATH=${FSLDIR}/bin:${PATH}`
 
 `export FSLDIR PATH`
+
+Guardar el archivo y cerrar. Puedes verificar que sí se escribió editándolo de nuevo y comprobando que el código que agregaste sigue ahí
