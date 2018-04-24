@@ -1,6 +1,6 @@
 # ! /bin/bash
 cd /media/sf_Google_Drive/Faces_Hu/
-folderList=($(ls ))
+folderList=($(ls -d -- */))
 for name in "${folderList[@]}"
 do
 	echo ${name}
