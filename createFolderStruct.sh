@@ -2,7 +2,8 @@
 
 inputFolder=/media/sf_Google_Drive/Faces_Hu
 dataFolder=/media/sf_Google_Drive/Faces_HuMVPA
-declare -a subjects=("Akira" "Apacs" "Barack" "Barney" "Bingo" "Bodza" "Bran" "Dome" "Grog" "Hera" "Kun" "Maverick" "Maya" "Molly" "MollyB" "Morante" "Odin" "Pan" "Sander" "Zilla")
+declare -a subjects=("Maya" "Bingo" "Barney" "Bodza" "Sander" "Apacs" "Barack" "Pan" "Akira" "Grog" "Maverick" "Bran" "Dome" "Molly" "Hera" "Kun" "MollyB" "Morante" "Odin" "Zilla")
+
 subjNum=1 #corresponding number
 subjFolder=${subjects[${subjNum}]} #subj to organize
 
@@ -28,10 +29,8 @@ do
 	mkdir ${outFolder} -p -v
 	cp ${inputFile} ${outFolder}/uncorrected.nii.gz #creates a copy of the file in the corresponding folder
 	mcflirt -in ${outFolder}/uncorrected.nii.gz -r ${dataFolder}/data/sub${subjS}/masks/A0.nii.gz -out ${outFolder}/BOLD.nii.gz -report
-#	cd ${outFolder}
-#	fslsplit uncorrected.nii.gz
-#	rm ${outFolder}/uncorrected.nii.gz
-#	volumeList=($(ls ))
+	rm ${outFolder}/uncorrected.nii.gz
+
 	
 
 done
