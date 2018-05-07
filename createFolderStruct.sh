@@ -1,6 +1,6 @@
 # ! /bin/bash
 
-inputFolder=/media/sf_Google_Drive/Faces_Hu
+inputFolder=/media/sf_Google_Drive/Faces_Hu/semirawData
 dataFolder=/media/sf_Google_Drive/Faces_HuMVPA
 declare -a subjects=("Maya" "Bingo" "Barney" "Bodza" "Sander" "Apacs" "Barack" "Pan" "Akira" "Grog" "Maverick" "Bran" "Dome" "Molly" "Hera" "Kun" "MollyB" "Morante" "Odin" "Zilla")
 
