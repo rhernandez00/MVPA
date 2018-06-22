@@ -1,4 +1,4 @@
-
+#!/home/inb/lconcha/fmrilab_software/miniconda2/bin/python
 # coding: utf-8
 
 # In[1]:
@@ -14,11 +14,11 @@ import os.path
 datapath = '/media/sf_usr/share/data/objetos/data' #depending on the experiment to be run
 
 subj = 1 #participante
-maskName = 'L_AIPs' #nombre de la mascara a cargar
+maskName = 'aza_LM1' #nombre de la mascara a cargar
 maskFolder = 'orig' #folder del cual se debe obtener la mascara
-runsToTrain = [1,3,5] #corridas para entrenar
-runsToTest = [2,4,6] #corridas para probar
-HemoCor = 6
+runsToTrain = [1,2,3,4] #corridas para entrenar
+runsToTest = [5,6,7,8] #corridas para probar
+HemoCor = 8
 model = 1
 task = 1
 dhandle = OpenFMRIDataset(datapath) #crea un handle del sitio donde se encuentran los datos
@@ -35,8 +35,8 @@ subjString = 'sub' + '%03d' % n #string que denota el participante a cargar
 run_datasets = [] #array donde se meteran los datos
 for run_id in runsToTrain: #Se mueve corrida por corrida para cargar cada dato
     # genera path de la mascara
-    mask_fname = os.path.join(datapath, 'sub001', 'masks', 'orig', 'L_AIPs' + '.nii.gz')
-    # carga los vectores 
+    mask_fname = os.path.join(datapath, 'sub001', 'masks', 'orig', 'aza_LM1' + '.nii.gz')
+    # carga los vectores
     run_events = dhandle.get_bold_run_model(model, subj, run_id)
     # carga la corrida pero solamente el volumen comprendido dentro de la mascara
     run_ds = dhandle.get_bold_run_dataset(subj, task, run_id, chunks=run_id -1, mask=mask_fname)
@@ -60,7 +60,7 @@ run_datasets2 = [] #array donde se meteran los datos
 for run_id in runsToTest: #Se mueve corrida por corrida para cargar cada dato
     # genera path de la mascara
     mask_fname = os.path.join(datapath, subjString, 'masks', maskFolder, maskName + '.nii.gz')
-    # carga los vectores 
+    # carga los vectores
     run_events = dhandle.get_bold_run_model(model, subj, run_id)
     # carga la corrida pero solamente el volumen comprendido dentro de la mascara
     run_ds = dhandle.get_bold_run_dataset(subj, task, run_id, chunks=run_id -1, mask=mask_fname)
@@ -119,7 +119,3 @@ clf = LinearCSVMC()
 clf.train(fdsTrain)
 err = clf(ds_split1)
 print np.asscalar(err)
-
-
-
-
