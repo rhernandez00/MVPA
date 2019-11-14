@@ -1,0 +1,6 @@
+</pre><hr>Initialisation<br><pre>
+
+/usr/share/fsl/5.0/bin/fslmaths /media/sf_data/Prosody/NoFMSTD/data/sub001/BOLD/task001_run001/BOLD prefiltered_func_data -odt float
+Total original volumes = 32
+
+/usr/share/fsl/5.0/bin/fslroi prefiltered_func_data example_func 16 1

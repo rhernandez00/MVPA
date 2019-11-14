@@ -1,6 +1,6 @@
 # ! /bin/bash
-cd /media/sf_Google_Drive/Faces_Hu/
-folderList=($(ls -d -- */))
+cd /media/sf_Google_Drive/HumanData/
+folderList=($(ls -d DH*))
 #declare -a folderList=("Kun")
 for name in "${folderList[@]}"
 do

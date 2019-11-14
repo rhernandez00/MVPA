@@ -1,18 +1,33 @@
 # ! /bin/bash
 
 inputFolder=/media/sf_Google_Drive/Faces_Hu/semirawData
+#inputFolder=/media/sf_Google_Drive/HumanData/
+dataFolder=/media/sf_Google_Drive/HmFaces
 dataFolder=/media/sf_Google_Drive/Faces_HuMVPA
 declare -a subjects=("Maya" "Bingo" "Barney" "Bodza" "Sander" "Apacs" "Barack" "Pan" "Akira" "Grog" "Maverick" "Bran" "Dome" "Molly" "Hera" "Kun" "MollyB" "Morante" "Odin" "Zilla")
 
+: '
+initS=1
+finalS=32
+for num in $(seq ${initS} ${finalS})
+do
+	printf -v fileN "%03d" ${num}
+	echo DH${fileN}
+	
+done
+'
 #for subjNum in $(seq 1 20)
 #do
 	subjNum=$1 #corresponding number
 	subjIndx=$(($1 - 1)) #corresponding number
 	echo ${subjNum}
+
 	subjFolder=${subjects[${subjIndx}]} #subj to organize
 
 	printf -v subjS "%03d" ${subjNum} #creates the padded number of the subj 
-	fileList=($(ls ${inputFolder}/${subjFolder})) #makes a list of the files in the folder
+#	subjFolder=DH${subjS}
+#	fileList=($(ls ${inputFolder}/${subjFolder})) #makes a list of the files in the folder
+	declare -a fileList=("run1.nii.gz" "run2.nii.gz" "run3.nii.gz" "run4.nii.gz" "run5.nii.gz" "run6.nii.gz")
 	nFiles=${#fileList[@]} #gets the number of files in the folder
 	task=001 #number of task (this is arbitrary), most of the times it is 001, it could change if in the same experiment the subj underwent different scans of completely different paradigms (not repetitions)
 
@@ -28,7 +43,7 @@ declare -a subjects=("Maya" "Bingo" "Barney" "Bodza" "Sander" "Apacs" "Barack" "
 	do
 		printf -v runS "%03d" ${i} #creates the padded number of run
 		echo creating directory fOr run...
-		inputFile=${inputFolder}/${subjFolder}/run${i}.nii.gz
+		inputFile=${inputFolder}/${subjFolder}/Run${i}.nii.gz
 		outFolder=${dataFolder}/data/sub${subjS}/BOLD/task${task}_run${runS}
 		mkdir ${outFolder} -p -v
 #		echo inputFile = ${inputFile}

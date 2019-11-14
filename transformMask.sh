@@ -12,7 +12,7 @@ maskName=AIP.nii.gz
 echo ${sub}
 fslroi ${dataFolder}/${experiment}/data/${sub}/BOLD/task001_run001/BOLD.nii.gz ${dataFolder}/${experiment}/data/${sub}/masks/A0.nii.gz 0 1
 
-#Transforma la anatomica en estandard
+#Transforma la anatomica en estandar
 echo anatomic to std
 /usr/share/fsl/5.0/bin/flirt -in ${dataFolder}/${experiment}/data/${sub}/masks/${anatomicName} -ref /usr/share/fsl/5.0/data/standard/MNI152_T1_2mm_brain -omat ${dataFolder}/${experiment}/data/${sub}/masks/A0std1.mat -bins 256 -cost corratio -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof 12 
 
